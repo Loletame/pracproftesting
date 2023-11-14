@@ -12,6 +12,9 @@ GET api/users
 			
 			
 }
+(solo testing) El login otorgara un token con cierto tiempo de vida, en insomnia se agrega a un API key auth (llave: "Authorizathion" - valor: el_token_aqui)con el request GET (este caso a la lista de usuarios ) y devuelve la lista de usuarios mientras el token sea valido.
+
+
 -JSON POST api/register: {
 		
   
@@ -25,4 +28,5 @@ GET api/users
 }
 en un entorno real el .env se agrega al gitignore por obvias razones (jwt secret)
 //.env
+
 
