@@ -21,8 +21,9 @@ export const loginAuthentication = async (req, res, next) => {
         if (!isPasswordValid) { // ⤵⤵ si "isPasswordValid" es NO valida (!) 
             return res.status(401).json({ msg: 'contraseña invalida' }); 
         }
+        //avanza al siguiente middleware
         next();
-// si el usuario es valido se puede hacer una sesion o devolver un token, a seguir.
+    // si el usuario es valido se puede hacer una sesion o devolver un token, a seguir.
     } catch (error) {
         console.error(error);
         res.status(500).json({ msg: 'Server error' });

@@ -23,4 +23,6 @@ GET api/users
 			
 			
 }
+en un entorno real el .env se agrega al gitignore por obvias razones (jwt secret)
+//.env
 

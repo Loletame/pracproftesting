@@ -4,13 +4,15 @@ import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validateCampos.js";
 import { loginAuthentication } from "../middlewares/loginAuthentication.js";
 import { verifySignUp } from  "../middlewares/verifySignup.js";
+import { loginAuthorization } from "../middlewares/loginAuthorization.js";
 
 
 const router = Router();
 
 
 router.get('/login', loginUser);
-router.get('/users', getAllUsers);
+//ruta protegida con jwt, con finalidad de testeo.
+router.get('/users',loginAuthorization, getAllUsers);
 
 
 router.post('/register' , [
@@ -27,6 +29,7 @@ router.post('/login', [
     check('password', 'La contraseña es requerida.').not().isEmpty(),
     validarCampos, 
     loginAuthentication,
+    loginAuthorization,
     loginUser,
 ], async (req, res) => {
     loginUser (req, res);

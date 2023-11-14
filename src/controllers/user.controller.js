@@ -1,5 +1,6 @@
 import User from '../models/user.js';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 //metodo para traer los usuarios en lista 
 export const getAllUsers = async (req, res) => {
 
@@ -18,16 +19,19 @@ export const getAllUsers = async (req, res) => {
     }
 }
 
-//metodo login de usuario, sesion y token a implementar...
+//metodo login de usuario, con JWT 
 export const loginUser = (req, res) => {
-
+    //genera un JsonWebToken (JWT) con determinado tiempo de vida (modificable a gusto)
+    const token = jwt.sign ({ user: req.user}, process.env.JWT_SECRET, { expiresIn: '5m' });
+    console.log('Generated Token:', token);
     res.status(200).json({
-        msg: 'logueado con exito'
+        msg: 'logueado con exito',
+        token
     })
 
 
 }
-
+//metodo creacion de usuario con hasheo "salado" a la contraseña 
 export const createUser = async (req,res) => {
 
     const {name,lastname,age, password,email} = req.body;
